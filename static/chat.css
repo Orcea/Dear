@@ -1,0 +1,120 @@
+body {
+  font-family: "Comic Sans MS", "Comic Sans", "cursive";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #d1cdcd; /* Серый фон */
+}
+
+.chat-container {
+  text-align: center;
+}
+
+.chat {
+  width: 700px; /* Увеличенный размер чата */
+  background-color: #b4acac; /* Белый фон */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Тень */
+  padding: 20px;
+}
+
+.chat-header {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333; /* Цвет текста */
+}
+
+.chat-messages {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Добавленные стили для поля ввода и кнопки отправки */
+#message-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#message-form input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  background-color: #eee;
+  font-weight: bold;
+  color: #333;
+}
+
+.send-button {
+  background-color: #0078d4; /* Синий фон кнопки отправки */
+  color: #fff; /* Белый цвет текста на кнопке */
+  border: none; /* Убираем границу кнопки */
+  border-radius: 10px; /* Закругление углов кнопки */
+  padding: 10px 30px; /* Внутренний отступ кнопки */
+  cursor: pointer; /* Изменение вида курсора при наведении */
+  margin-left: 400px; /* Отступ слева для кнопки отправки */
+}
+
+.send-button:hover {
+  background-color: #005ea2; /* Изменение цвета при наведении */
+}
+
+.input-group {
+  flex-grow: 2; /* Растягиваем группу элементов ввода, чтобы занять доступное пространство */
+  padding: 10px; /* Внутренний отступ группы элементов ввода */
+  border: 1px solid #ccc; /* Граница группы элементов ввода */
+  border-radius: 5px; /* Закругление углов группы элементов ввода */
+  outline: none; /* Убираем обводку при фокусировке */
+  background-color: #ccc; /* Светло-серый фон */
+  font-weight: 900; /* Жирный шрифт */
+}
+
+
+body {
+  background-image: url('https://images.wallpapershq.com/wallpapers/972/thumbnail_350x218.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.chat {
+  width: 700px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  /* Другие стили для чата */
+}
+
+/* Остальные стили, как вы их определили ранее */
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  perspective: 1000px; /* Глубина перспективы */
+}
+
+.content {
+  width: 100%;
+  height: 100vh;
+  background-image: url('background.jpg'); /* Замените на свое изображение */
+  background-size: cover;
+  background-position: center;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-in-out; /* Плавное переходное движение */
+}
+
+/* Другие стили по вашему усмотрению */
+
+

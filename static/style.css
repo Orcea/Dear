@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(135deg, #888888, #ebebeb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.header {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: absolute;
+    top: 10%;
+
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    color: #fff;
+}
+
+.login-container {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 15px;
+    border-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+
+}
+
+.login-container h2 {
+    color: #fff;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-button {
+    background-color: rgba(0, 0, 0, .0);
+    color: #fff;
+    border-radius: 0px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Стили для изображения логотипа */
+.logo {
+    vertical-align: middle; /* Выравнивание по вертикали */
+    margin-right: 10px; /* Отступ справа от изображения */
+    width: 50px; /* Ширина изображения */
+    height: 50px; /* Высота изображения */
+}
+
+/* Стили для текстовой части логотипа (буквы "DearChat") */
+.logo-text {
+    font-size: 24px; /* Размер шрифта */
+    position: relative; /* Абсолютное позиционирование относительно родительского элемента */
+    top: -5px; /* Сдвиг вверх, чтобы изображение было перед "D" */
+}
+
+/* Стили для переливающегося фона */
+body {
+    animation: backgroundAnimation 8s linear infinite;
+    background: linear-gradient(45deg, #b4acac, #fff, #b4acac, #fff);
+    background-size: 400% 400%;
+}
+
+/* Анимация для переливающегося фона */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

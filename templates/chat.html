@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DearChat | Chat</title>
+    <link rel="stylesheet" type="text/css" href="/static/chat.css">
+</head>
+
+<body>
+    <div class="chat-container">
+        <h2>{{ username }}, приветствуем в DearChat</h2>
+
+        <div class="chat" id="chat">
+            <!-- Here will be messages -->
+        </div>
+
+        <audio id="audioPlayer" controls></audio>
+        <button id="startRecording">Start Recording</button>
+        <button id="stopRecording" disabled>Stop Recording</button>
+        <button id="playRecording" disabled>Play Recording</button>
+
+        <!-- Форма для отправки голосового сообщения -->
+        <form id="message-form">
+            <div class="input-group">
+                <input type="text" placeholder="Напишите текстовое сообщение" name="message" id="messageText">
+                <input type="file" accept="audio/*" capture="microphone" id="audioInput" style="display: none;">
+            </div>
+            <button type="submit" class="send-button">Отправить</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var username = "{{ username }}";
+
+            $("#message-form").submit(function(e) {
+                e.preventDefault();
+                var messageText = $("#messageText").val();
+                var audioBlob = $("#audioBlob").val();
+
+                // Отправляем текстовое сообщение и голосовую запись на сервер
+                $.ajax({
+                    url: "/send_message",
+                    type: "POST",
+                    data: {
+                        "message": messageText,
+                        "username": username,
+                        "audioBlob": audioBlob
+                    },
+                    success: function(response) {
+                        $("#messageText").val("");
+                        $("#audioBlob").val("");
+                    }
+                });
+            });
+
+            const startRecordingButton = document.getElementById('startRecording');
+            const stopRecordingButton = document.getElementById('stopRecording');
+            const playRecordingButton = document.getElementById('playRecording');
+            const audioPlayer = document.getElementById('audioPlayer');
+            let mediaRecorder;
+            let audioChunks = [];
+
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function(stream) {
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    mediaRecorder.ondataavailable = function(event) {
+                        if (event.data.size > 0) {
+                            audioChunks.push(event.data);
+                        }
+                    };
+
+                    mediaRecorder.onstop = function() {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        audioPlayer.src = audioUrl;
+
+                        // Записываем голосовую запись в скрытое поле формы
+                        $("#audioBlob").val(audioBlob);
+                    };
+                })
+                .catch(function(error) {
+                    console.error('Error accessing microphone:', error);
+                });
+
+            startRecordingButton.addEventListener('click', function() {
+                mediaRecorder.start();
+                startRecordingButton.disabled = true;
+                stopRecordingButton.disabled = false;
+            });
+
+            stopRecordingButton.addEventListener('click', function() {
+                mediaRecorder.stop();
+                startRecordingButton.disabled = false;
+                stopRecordingButton.disabled = true;
+                playRecordingButton.disabled = false;
+            });
+
+            playRecordingButton.addEventListener('click', function() {
+                audioPlayer.play();
+            });
+
+            const content = document.getElementById('chat');
+
+            document.addEventListener('mousemove', (e) => {
+                const centerX = window.innerWidth / 2;
+                const mouseY = e.clientX - centerX;
+
+                // Задаем угол поворота в зависимости от положения мыши
+                const rotateY = mouseY * 0.005;
+
+                // Применяем трансформацию CSS
+                content.style.transform = `rotateY(${rotateY}deg)`;
+            });
+        });
+
+        function updateChat() {
+            $.get("/get_messages", function(data) {
+                $("#chat").html(data);
+            });
+        }
+
+        setInterval(updateChat, 1000);
+    </script>
+</body>
+
+</html>

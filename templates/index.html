@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DearChat | Authorization</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>
+            <img src="https://cdn-icons-png.flaticon.com/512/44/44601.png" alt="DearChat Logo" class="logo">
+            DearChat | {{ random_phrase }}
+        </h1>
+    </div>
+
+    <div class="login-container">
+        <h2>Authorization</h2>
+
+        <form id="auth-form">
+            <div class="input-group">
+                <input type="text" placeholder="Enter your name" name="username" id="username">
+            </div>
+            <button type="submit" class="login-button">Continue</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#auth-form").submit(function(e) {
+                e.preventDefault();
+                var username = $("#username").val();
+
+                if (username.trim() !== "") {
+                    window.location.href = "/chat/" + username;
+                };
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
